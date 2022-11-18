@@ -2,16 +2,14 @@
 ### Remove unwanted shortcuts ######
 ####################################
 
-#### Set shortcut(s) path as variable #### 
-$Skype = 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Skype for Business.lnk'
-$OneDrive = 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\OneDrive.lnk'
-$OneDriveBusiness = 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\OneDrive for Business.lnk'
+### Define the path to the folder to clean ###
+$Path = 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\'
 
-#### Add the variable(s) created to the list ####
-$Shortcuts = @($Skype,$OneDrive,$OneDriveBusiness)
+### Shortcuts to look for in the given path ###
+$ShortCuts = 'Skype for Business.lnk','OneDrive.lnk','OneDrive for Business.lnk'
 
 foreach($shortcut in $Shortcuts){
-    if (Test-Path $shortcut){
-        Remove-Item -path $shortcut -Force -Recurse
+    if (Test-Path "$Path$shortcut"){
+        Remove-Item -path "$Path$shortcut" -Force -Recurse
     }
 }
